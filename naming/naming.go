@@ -1,9 +1,9 @@
 package naming
 // package main
 import (
-	"fmt"
+// 	"fmt"
 	"math/rand"
-    "time"
+        "time"
 )
 
 var babyNames = []string{"Mike", "Jay", "Tim", "Wendy", "Elisabeth", "Lacus"}
