@@ -3,23 +3,28 @@ package naming
 import (
 // 	"fmt"
 	"math/rand"
-    "time"
+        "time"
 )
 
 var maleNames = []string{"Mike", "Jay", "Tim", "Jack", "Andrew"}
 var femaleNames = []string{"Lacus", "Wendy", "Elisabeth", "Christine", "Monica"}
 
+func GetNameList (male bool) []string {
+ 	var nameList []string
+ 	if male {
+ 		nameList = maleNames
+ 	} else {
+ 		nameList = femaleNames
+ 	}
+ 	return nameList
+}
+
 func CreateBabyName(male bool, lastName string) string {
-       rand.Seed(time.Now().UTC().UnixNano())
-       if male {
-            randomize := rand.Intn(len(maleNames))
-            fullName := maleNames[randomize] + " " + lastName
-            return fullName
-       } else {
-           randomize := rand.Intn(len(femaleNames))
-           fullName := femaleNames[randomize] + " " + lastName
-           return fullName
-       }
+    nameList := GetNameList(male)
+    rand.Seed(time.Now().UTC().UnixNano())
+    randomize := rand.Intn(len(nameList))
+    fullName := nameList[randomize] + " " + lastName
+    return fullName
 }
 
 // func main() {
@@ -27,6 +32,7 @@ func CreateBabyName(male bool, lastName string) string {
 //     var gender string
 //     var male bool
 //     fmt.Println("***** This is a Baby Naming Generator *****")
+//     fmt.Println(GetNameList(true))
 //     fmt.Println("1. Please enter your Last Name: " )
 //     fmt.Scanln(&lastName)
 //     fmt.Println("2. Is your baby a boy or girl?")
