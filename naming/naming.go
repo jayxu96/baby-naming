@@ -3,23 +3,42 @@ package naming
 import (
 // 	"fmt"
 	"math/rand"
-        "time"
+    "time"
 )
 
-var babyNames = []string{"Mike", "Jay", "Tim", "Wendy", "Elisabeth", "Lacus"}
+var maleNames = []string{"Mike", "Jay", "Tim", "Jack", "Andrew"}
+var femaleNames = []string{"Lacus", "Wendy", "Elisabeth", "Christine", "Monica"}
 
-func CreateBabyName(lastName string) string {
+func CreateBabyName(male bool, lastName string) string {
        rand.Seed(time.Now().UTC().UnixNano())
-       randomize := rand.Intn(len(babyNames))
-       fullName := babyNames[randomize] + " " + lastName
-       return fullName
+       if male {
+            randomize := rand.Intn(len(maleNames))
+            fullName := maleNames[randomize] + " " + lastName
+            return fullName
+       } else {
+           randomize := rand.Intn(len(femaleNames))
+           fullName := femaleNames[randomize] + " " + lastName
+           return fullName
+       }
 }
 
 // func main() {
-//     var lastName string;
+//     var lastName string
+//     var gender string
+//     var male bool
 //     fmt.Println("***** This is a Baby Naming Generator *****")
-//     fmt.Println("Please enter your Last Name: " )
-//
+//     fmt.Println("1. Please enter your Last Name: " )
 //     fmt.Scanln(&lastName)
-//     fmt.Println("The baby name is " + CreateBabyName(lastName))
+//     fmt.Println("2. Is your baby a boy or girl?")
+//     fmt.Scanln(&gender)
+//     fmt.Println("Your baby is a " + gender)
+//     if gender == "boy" {
+//        male = true
+//     } else if gender == "girl" {
+//       male = false
+//     } else {
+//       fmt.Println ("Sorry, this generator does not support generate names for other genders.")
+//       return
+//     }
+//     fmt.Println("Congrats! The baby name is " + CreateBabyName(male, lastName))
 // }
